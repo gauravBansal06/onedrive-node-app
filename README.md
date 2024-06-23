@@ -3,6 +3,7 @@
 ## App Functionalities
 
 - **Service URL**: [http://localhost:3000/](http://localhost:3000/)
+- **SignIn Page**: Root page with a button for Microsoft signin.
 - **Home Page**: Displays signed-in user info and lists the directories and files in the root directory of OneDrive.
   - [http://localhost:3000/home](http://localhost:3000/home)
 - **File Details Page**: Clicking on a file on the home page provides more information about the file, such as shared users.
