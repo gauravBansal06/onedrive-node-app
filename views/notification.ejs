@@ -1,0 +1,44 @@
+<!-- Notification popup -->
+<div id="notification" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #f0f0f0; padding: 20px; border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <p id="notificationMessage"></p>
+    <button onclick="location.reload()">Refresh</button>
+</div>
+
+<!-- JavaScript to handle WebSocket and notifications -->
+<script>
+    const notificationSocket = new WebSocket('ws://' + window.location.host + '/file');
+
+    notificationSocket.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        console.log('WebSocket message received:', event.data);
+        if (data.type === 'notification') {
+            showNotification(data.message);
+        }
+    };
+
+    notificationSocket.onclose = function() {
+        console.log('WebSocket closed.');
+    };
+
+    notificationSocket.onerror = function(error) {
+        console.error('WebSocket error:', error);
+    };
+
+    function showNotification(message) {
+        const notificationElement = document.getElementById('notification');
+        const notificationMessageElement = document.getElementById('notificationMessage');
+        notificationMessageElement.innerText = message;
+        notificationElement.style.display = 'block';
+
+        // Automatically hide the notification after 5 seconds
+        setTimeout(() => {
+            hideNotification();
+        }, 2000);
+    }
+
+    function hideNotification() {
+        const notificationElement = document.getElementById('notification');
+        notificationElement.style.display = 'none';
+        location.reload();
+    }
+</script>

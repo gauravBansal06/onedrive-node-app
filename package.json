@@ -1,0 +1,36 @@
+{
+  "name": "strac-onedrive-node-app",
+  "version": "1.0.0",
+  "description": "Server Side app connectes to onedrive and serves basic functionalities",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gauravBansal06/strac-onedrive-node-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gauravBansal06/strac-onedrive-node-app/issues"
+  },
+  "homepage": "https://github.com/gauravBansal06/strac-onedrive-node-app#readme",
+  "dependencies": {
+    "@azure/identity": "4.3.0",
+    "@azure/msal-node": "2.9.2",
+    "@microsoft/microsoft-graph-client": "3.0.7",
+    "axios": "1.7.2",
+    "dotenv": "16.4.5",
+    "ejs": "^3.1.10",
+    "express": "4.19.2",
+    "express-session": "1.18.0",
+    "fs": "0.0.1-security",
+    "isomorphic-fetch": "3.0.0",
+    "path": "0.12.7",
+    "socket.io": "4.7.5",
+    "ws": "8.17.1"
+  }
+}

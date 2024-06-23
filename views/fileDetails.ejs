@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Details</title>
+</head>
+<body>
+    <h1>File Details</h1>
+    <p>Id: <%= file.id %></p>
+    <p>Name: <%= file.name %></p>
+    <p>Created: <%= file.createdDateTime %></p>
+    <p>Last Modified: <%= file.lastModifiedDateTime %></p>
+    <p>Size: <%= file.size %> bytes</p>
+    <% if (file.file) { %>
+        <p>MimeType: <%= file.file.mimeType %></p>
+    <% } %>
+    
+    <br>
+    <hr>
+
+    <h2>Users with Access</h2>
+    <% if (permissions && permissions.length > 0) { %>
+        <ul>
+            <% permissions.forEach(function(permission) { %>
+                <li>
+                    <%= permission.grantedTo && permission.grantedTo.user ? (permission.grantedTo.user.userPrincipalName || permission.grantedTo.user.mail || permission.grantedTo.user.id) : 'User Property not received' %>
+                    - Roles: <%= permission.roles.join(', ') %>
+                </li>
+            <% }); %>
+        </ul>        
+    <% } else { %>
+        <p>File not shared</p>
+    <% } %>
+
+    <!-- OneDrive URL and Back to Home link -->
+    <br>
+    <hr>
+    <% if (file.file) { %>
+        <p><a href="<%= file['@microsoft.graph.downloadUrl'] %>">Download</a></p>
+    <% } %>
+    <p><a href="<%= file.webUrl %>">OneDrive URL</a></p>
+    <p><a href="/home">Back to Home</a></p>
+
+    <!-- Include the notification partial -->
+    <%- include('notification') %>
+</body>
+</html>

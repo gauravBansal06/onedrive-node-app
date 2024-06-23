@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome</h1>
+    <p>User Id: <%= user.id %></p>
+    <p>Username: <%= user.userPrincipalName %></p>
+    <p>Email: <%= user.mail %></p>
+    <p><a href="/logout">Logout</a></p>
+
+    <br>
+    <hr>
+
+    <h2>Your OneDrive Root Directory Info</h2>
+
+    <!-- Directories section -->
+    <h3>Directories (Total: <%= directories.length %>)</h3>
+    <ul>
+        <% directories.forEach(directory => { %>
+            <li>
+                <%= directory.name %> - Size: <%= directory.size %>, <t/> Children: <%= directory.folder.childCount %> <a href="<%= directory.webUrl %>"> OneDrive URL</a>
+            </li>
+        <% }); %>
+    </ul>
+
+    <!-- Files section -->
+    <h3>Files (Total: <%= files.length %>)</h3>
+    <ul>
+        <% files.forEach(file => { %>
+            <li>
+                <a href="/file/<%= file.id %>"><%= file.name %></a> - <%= file.size %> bytes
+                <% if (file.file) { %>
+                   <a href="<%= file['@microsoft.graph.downloadUrl'] %>">Download</a>
+                <% } %>
+            </li>
+        <% }); %>
+    </ul>
+
+    <br>
+    <hr>
+
+    <!-- Subscribe to real time events link -->
+    <p><a href="/subscribe">Click To Subscribe to real time notifications for files from OneDrive</a></p>
+
+    <!-- Include the notification partial -->
+    <%- include('notification') %>
+
+</body>
+</html>
