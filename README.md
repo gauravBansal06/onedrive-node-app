@@ -53,7 +53,7 @@
 
      - **Application Permissions**:
        - `Files.Read`: Allows the app to read all files that the signed-in user can access.
-       - `Files.ReadWrite`: Allows the app to read, create, update, and delete files in all site collections without a signed-in user.
+       - `Files.Read.All`: Allows the app Read all files that user can access.
        - `profile`: Allows the app to view users' basic profile.
        - `email`: Allows the app to view users' email address.
        - `Users.Read`: Allows the app to Sign in and read user profile.
